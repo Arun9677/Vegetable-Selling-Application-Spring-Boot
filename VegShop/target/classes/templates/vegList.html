@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Vegetable List</title>
+</head>
+<body>
+<h1>AR VEG SHOP</h1>
+<table border="1">
+<thead>
+<tr>
+<th>S.No</th>
+<th>Name</th>
+<th>Quantity</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each ="veg, pStat : ${vegList}">
+<td th:text = "${pStat.count}">S.No</td>
+<td th:text = "${veg.name}">Name</td>
+<td th:text = "${veg.quantity}">Quantity</td>
+<td th:text = " 'Rs.' + ${veg.price}">Price</td>
+</tr>
+<tr id="ar">
+<td></td>
+<td>Stock :</td>
+<td><b th:text="${#aggregates.sum(vegList.![quantity])} + '.kg'"></b></td>
+<td></td>
+</tr>
+</tbody>
+</table><br><br>
+<a href="/empHome">Home</a>
+</body>
+</html>

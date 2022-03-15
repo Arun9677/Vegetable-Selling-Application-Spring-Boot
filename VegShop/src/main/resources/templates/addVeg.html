@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add vegetable</title>
+</head>
+<body>
+<form action="#" th:action="@{/addVeg}" th:object="${veg}" method="post">
+Name:<br>
+<input type = "text" th:field="*{name}"><br><br>
+Quantity:<br>
+<input type="text" th:field="*{quantity}"><br><br>
+Price:<br>
+<input type = "text" th:field="*{price}"><br><br>
+<input type = "submit" value = "Add">
+</form><br><br>
+<a href="/empHome">Employ Page</a>
+</body>
+</html>

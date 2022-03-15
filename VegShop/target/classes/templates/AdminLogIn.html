@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Log In</title>
+</head>
+<body>
+<form method="post" th:object="${admin}">
+UserId:<br>
+<input type = "text" th:field="*{userId}"><br><br>
+Password:<br>
+<input type = "password" th:field="*{password}"><br><br>
+<input type = "submit" value = "Sign In" formaction="#" th:formaction="@{/AdminSignIn}">
+<input type = "submit" value = "Sign Up" formaction="#" th:formaction="@{/addAdmin}">
+</form><br><br>
+<a href="/">Main Page</a>
+</body>
+</html>

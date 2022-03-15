@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Bill</title>
+</head>
+<style>
+#ar{
+	border: none;
+}
+</style>
+<body>
+<h1>AR VEG SHOP</h1>
+Customer Name : &emsp; <input type="text" name="CName" th:value="${CName}" readonly="readonly"><br>
+Customer Number :&nbsp;&nbsp;<input type="text" name="CNum" th:value="${CNum}" readonly="readonly"><br><br>
+<table border="1">
+<thead>
+<tr>
+<th>S.No</th>
+<th>Name</th>
+<th>Quantity</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each ="veg, pStat : ${vegBill}">
+<td th:text = "${pStat.count}">S.No</td>
+<td th:text = "${veg.name}">Name</td>
+<td th:text = "${veg.quantity}">Quantity</td>
+<td th:text = " 'Rs.' + ${veg.price}">Price</td>
+</tr>
+<tr id="ar">
+<td></td>
+<th>Total :</th>
+<td><b th:text="${#aggregates.sum(vegBill.![quantity])} + '.kg'"></b></td>
+<td><b th:text=" 'Rs.' + ${#aggregates.sum(vegBill.![price])}"></b></td>
+</tr>
+</tbody>
+</table><br><br>
+<a href="/empHome">Home</a>
+</body>
+</html>

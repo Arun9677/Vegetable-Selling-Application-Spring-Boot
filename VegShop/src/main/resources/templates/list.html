@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="ISO-8859-1">
+<title>Vegetable List</title>
+</head>
+<body>
+<table border="1">
+<thead>
+<tr>
+<th>
+<a th:href="@{'/page/'+ ${currentpage} + '?sortField=id&ord=' + ${sd}}">Id</a>
+</th>
+<th>
+<a th:href="@{'/page/'+ ${currentpage} + '?sortField=name&ord=' + ${sd}}">Name</a>
+</th>
+<th>
+<a th:href="@{'/page/'+ ${currentpage} + '?sortField=quantity&ord=' + ${sd}}">Quantity</a>
+</th>
+<th>
+<a th:href="@{'/page/'+ ${currentpage} + '?sortField=price&ord=' + ${sd}}">Price</a>
+</th>
+<th>Operations</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="veg :${pgnlist}">
+<td th:text="${veg.id}">veg Id</td>
+<td th:text="${veg.name}">veg Name</td>
+<td th:text="${veg.quantity}">veg Quantity</td>
+<td th:text="${veg.price}">veg Price</td>
+<td>
+<a th:href="@{'/edit/' + ${veg.id}}">Edit</a>
+<a th:href="@{'/delete/' + ${veg.id}}">Delete</a></td>
+</tr>
+</tbody>
+</table>
+
+<div>Sorted [[${sortField}]]  in [[${ord}]] order</div><div>&nbsp;</div>
+
+<div th:if="${tp > 1}">
+Total Items: [[${totalItems}]] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a th:if="${currentpage > 1}" th:href="@{'/page/1' + '?sortField=' + ${sortField} + '&ord=' + ${ord}}">1st</a> 
+<span th:unless="${currentpage > 1}">First</span>
+&nbsp;&nbsp;
+
+<a th:if="${currentpage > 1}" th:href="@{'/page/' + ${currentpage - 1} + '?sortField=' + ${sortField} + '&ord=' + ${ord}}">Pre</a>
+<span th:unless="${currentpage > 1}">pre</span>
+&nbsp;&nbsp;
+		
+<span th:each="i: ${#numbers.sequence(1, tp)}">
+<a th:if="${currentpage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&ord=' + ${ord}}">[[${i}]]</a>
+<span th:unless="${currentPage != i}">[[${i}]]</span>
+&nbsp;&nbsp;
+</span>
+
+<a th:if="${currentpage < tp}" th:href="@{'/page/' + ${currentpage + 1} + '?sortField=' + ${sortField} + '&ord=' + ${ord}}">Next</a>
+<span th:unless="${currentpage < tp}">Next</span>
+&nbsp;&nbsp;
+		
+<a th:if="${currentpage < tp}" th:href="@{'/page/' + ${tp} + '?sortField=' + ${sortField} + '&ord=' + ${ord}}">Last</a>
+<span th:unless="${currentpage < tp}">Last</span>
+
+</div>
+<br><br>
+<a href="/admHome">Main Page</a>
+</body>
+</html>
